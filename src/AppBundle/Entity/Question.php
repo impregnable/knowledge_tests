@@ -17,7 +17,7 @@
     protected $id;
 
     /**
-    *@ORM\Column(type="string", length=10)
+    *@ORM\Column(type="string")
     */
     protected $text;
 
@@ -67,7 +67,7 @@
     public function getText() {
       return $this->text;
     }
-  
+
     /**
      * Set test
      *
@@ -84,7 +84,7 @@
     /**
      * Get test
      *
-     * @return \AppBundle\Entity\Test 
+     * @return \AppBundle\Entity\Test
      */
     public function getTest()
     {
