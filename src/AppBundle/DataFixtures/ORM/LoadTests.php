@@ -11,17 +11,20 @@
   {
       public function load(ObjectManager $manager)
       {
-          $questionNames = array('Question1', 'Question2', 'Question3');
-          $test = new Test();
-          $test->setName('Sport');
+          $testNames = array('Test1', 'Test2', 'Test3');
+            foreach ($testNames as $testName) {
+              $test = new Test();
+              $test->setName($testName);
+              $manager->persist($test);
+              $manager->flush();
 
-          $manager->persist($test);
-          $manager->flush();
-          foreach ($questionNames as $questionName) {
-            $question = new Question();
-            $question->setText($questionName)->setTest($test);
-            $manager->persist($question);
-            $manager->flush();
-          }
+          $questionNames = array('Question1', 'Question2', 'Question3');
+            foreach ($questionNames as $questionName) {
+              $question = new Question();
+              $question->setText($questionName)->setTest($test);
+              $manager->persist($question);
+              $manager->flush();
+            }
+            }
       }
-    }
+  }
