@@ -1,0 +1,15 @@
+{% extends "main.html.twig" %}
+
+{% block content %}
+<div class='wrapper'>
+  <div class='heading'>Pick the test you wanna take</div>
+  <ul class="collection">
+    {% for test in tests %}
+    <a class="collection-item" href="">
+      <li>{{test["name"]}}</li>
+      Includes {{test['questions_count']}} questions
+    </a>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
