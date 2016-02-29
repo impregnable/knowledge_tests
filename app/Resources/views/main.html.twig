@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/framework/css/bower_components/Materialize/dist/css/materialize.min.css') }}" />
     </head>
     <body>
         {% block content %}{% endblock %}
