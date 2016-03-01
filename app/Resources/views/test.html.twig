@@ -1,0 +1,11 @@
+{% extends "main.html.twig" %}
+
+{% block content %}
+{{test.getName()}}
+{% for q in test.getQuestions() %}
+<div>{{q.getText()}}</div>
+{% for a in q.getAnswers() %}
+<div>{{a.getText()}}</div>
+{% endfor %}
+{% endfor %}
+{% endblock %}

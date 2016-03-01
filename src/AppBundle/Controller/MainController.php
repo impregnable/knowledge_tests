@@ -7,9 +7,9 @@
   use Symfony\Component\HttpFoundation\Response;
   use AppBundle\Entity\Test;
   use AppBundle\Entity\Question;
+  use AppBundle\Entity\Answer;
 
   class MainController extends Controller {
-
     /**
     * @Route("/tests")
     */
@@ -23,5 +23,20 @@
      ->groupBy('t.id');
      // render template tests
      return  $this->render("/tests.html.twig", array('tests' => $query->getQuery()->getResult()));
+    }
+
+    /**
+    * @Route("/tests/{id}", name="test")
+    */
+    function getCurrentTest($id) {
+      $em = $this->getDoctrine()->getManager();
+      $test = $em->find('AppBundle\Entity\Test', $id);
+      return $this->render('test.html.twig', array(
+        'test' => $test
+      ));
+      // $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
+      // $query = $qb->select(array('t.name', 'q.text', 'a.text'))
+      // ->from('AppBundle\Entity\Question', 'q')
+      // ->join('AppBundle\Entity\Answer', 'a', \Doctrine\ORM\Query\Expr\Join::ON,  )
     }
   }
