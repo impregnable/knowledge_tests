@@ -5,7 +5,7 @@
   <div class='heading'>Pick the test you wanna take</div>
   <ul class="collection">
     {% for test in tests %}
-    <a class="collection-item" href="">
+    <a class="collection-item" href="{{path('test', {'id': test['id']})}}">
       <li>{{test["name"]}}</li>
       Includes {{test['questions_count']}} questions
     </a>
