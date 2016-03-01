@@ -26,6 +26,9 @@
      */
      protected $test;
 
+     /** @ORM\OneToMany(targetEntity="Answer", mappedBy="question") */
+     protected $answers;
+
     /**
     * Set id
     *
@@ -89,5 +92,45 @@
     public function getTest()
     {
         return $this->test;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \AppBundle\Entity\Answer $answers
+     * @return Question
+     */
+    public function addAnswer(\AppBundle\Entity\Answer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \AppBundle\Entity\Answer $answers
+     */
+    public function removeAnswer(\AppBundle\Entity\Answer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 }

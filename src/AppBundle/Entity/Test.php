@@ -21,6 +21,9 @@
     */
     protected $name;
 
+    /** @ORM\OneToMany(targetEntity="Question", mappedBy="test") */
+    protected $questions;
+
     /**
     * Set id
     *
@@ -62,4 +65,44 @@
     public function getName() {
       return $this->name;
     }
-  }
+      /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add questions
+     *
+     * @param \AppBundle\Entity\Question $questions
+     * @return Test
+     */
+    public function addQuestion(\AppBundle\Entity\Question $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \AppBundle\Entity\Question $questions
+     */
+    public function removeQuestion(\AppBundle\Entity\Question $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+}
