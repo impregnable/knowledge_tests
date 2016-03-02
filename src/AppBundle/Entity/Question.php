@@ -29,6 +29,20 @@
      /** @ORM\OneToMany(targetEntity="Answer", mappedBy="question") */
      protected $answers;
 
+     public function getType() {
+       $qs = $this->getAnswers();
+       if($qs->count() == 1) {
+         return 'textarea';
+       }
+       elseif ($qs->count() > 1) {
+         $correctCount = $qs->filter(function($q) { return $q->getIsCorrect(); })->count();
+         if($correctCount > 1)
+          return 'checkbox';
+        else
+          return 'select';
+       }
+     }
+
     /**
     * Set id
     *
@@ -127,7 +141,7 @@
     /**
      * Get answers
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAnswers()
     {
