@@ -1,5 +1,7 @@
 {% extends "main.html.twig" %}
 
+{% block title %}{{test.getName()}}{% endblock %}
+
 {% block content %}
 <div class="top">
   <div class="block">
@@ -8,32 +10,37 @@
 </div>
 <div class="content">
 <div class="row">
-  <form action="#" class="col s12">
+  <form action="{{path('postTest', {'id': test.getId()})}}" method='POST' class="col s12">
     {% for q in test.getQuestions() %}
+    <input type="hidden" value='{{q.getId()}}' name='questions[{{loop.index0}}][id]' />
       <div class="blockQuestions">{{q.getText()}}</div>
     {% for a in q.getAnswers() %}
+      <input
+        type="hidden"
+        value='{{a.getId()}}'
+        name='questions[{{loop.parent.loop.index0}}][answer][id]' />
       <div class="blockAnswers">
         {% if q.getType() == 'select' %}
           <p>
-            <input name="group" type="radio" id="answer_{{a.getId()}}" value="{{a.getId()}}" />
+            <input name='questions[{{loop.parent.loop.index0}}][answer][value]' type="radio" id="answer_{{a.getId()}}" value="{{a.getId()}}" />
             <label for="answer_{{a.getId()}}">{{a.getText()}}</label>
           </p>
         {% elseif q.getType() == 'checkbox' %}
           <p>
-            <input type="checkbox" id="answer_{{a.getId()}}" value="{{a.getId()}}"/>
+            <input type="checkbox" name='questions[{{loop.parent.loop.index0}}][answer][value][]' id="answer_{{a.getId()}}" value="{{a.getId()}}"/>
             <label for="answer_{{a.getId()}}">{{a.getText()}}</label>
           </p>
         {% else %}
             <div class="input-field">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <textarea id="textarea1" name='questions[{{loop.parent.loop.index0}}][answer][value]' class="materialize-textarea"></textarea>
               <div style="display:none">{{a.getIsCorrect()}}</div>
             </div>
         {% endif %}
       </div>
     {% endfor %}
     {% endfor %}
+    <button class="btn waves-effect waves-light block" type="submit" name="action">Submit</button>
   </form>
 </div>
-<button class="btn waves-effect waves-light block" type="submit" name="action">Submit</button>
 </div>
 {% endblock %}

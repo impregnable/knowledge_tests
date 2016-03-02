@@ -5,9 +5,11 @@
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Symfony\Component\HttpFoundation\Response;
+  use Symfony\Component\HttpFoundation\Request;
   use AppBundle\Entity\Test;
   use AppBundle\Entity\Question;
   use AppBundle\Entity\Answer;
+  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
   class MainController extends Controller {
     /**
@@ -32,9 +34,24 @@
       // fetches Doctrine's entity manager object
       $em = $this->getDoctrine()->getManager();
       // fetching a specific test based on its id value
-      $test = $em->find('AppBundle\Entity\Test', $id);
+      $test = $em->find('AppBundle:Test', $id);
+
+      if(!$test) {
+        throw $this->createNotFoundException('No test found for id ' .$id);
+      }
       return $this->render('test.html.twig', array(
         'test' => $test
       ));
+    }
+
+    /**
+    * @Route("/postTest/{id}", name="postTest")
+    * @Method("POST")
+    */
+    function postTest(Request $request) {
+      echo '<pre>';
+      print_r($request->request->all()['questions']);
+      echo '</pre>';
+
     }
   }
