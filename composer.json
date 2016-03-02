@@ -2,6 +2,7 @@
     "name": "artem/knowledge_tests",
     "license": "proprietary",
     "type": "project",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "": "src/"
@@ -21,7 +22,8 @@
         "sensio/distribution-bundle": "~5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "fzaninotto/faker": "^1.5"
+        "fzaninotto/faker": "^1.5",
+        "javiereguiluz/easyadmin-bundle": "^1.11"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
