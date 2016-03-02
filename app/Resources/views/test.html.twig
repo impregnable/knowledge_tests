@@ -1,11 +1,39 @@
 {% extends "main.html.twig" %}
 
 {% block content %}
-{{test.getName()}}
-{% for q in test.getQuestions() %}
-<div>{{q.getText()}}</div>
-{% for a in q.getAnswers() %}
-<div>{{a.getText()}}</div>
-{% endfor %}
-{% endfor %}
+<div class="top">
+  <div class="block">
+    <div>{{test.getName()}}</div>
+  </div>
+</div>
+<div class="content">
+<div class="row">
+  <form action="#" class="col s12">
+    {% for q in test.getQuestions() %}
+      <div class="blockQuestions">{{q.getText()}}</div>
+    {% for a in q.getAnswers() %}
+      <div class="blockAnswers">
+        {% if q.getType() == 'select' %}
+          <p>
+            <input name="group" type="radio" id="answer_{{a.getId()}}" value="{{a.getId()}}" />
+            <label for="answer_{{a.getId()}}">{{a.getText()}}</label>
+          </p>
+        {% elseif q.getType() == 'checkbox' %}
+          <p>
+            <input type="checkbox" id="answer_{{a.getId()}}" value="{{a.getId()}}"/>
+            <label for="answer_{{a.getId()}}">{{a.getText()}}</label>
+          </p>
+        {% else %}
+            <div class="input-field">
+              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <div style="display:none">{{a.getIsCorrect()}}</div>
+            </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    {% endfor %}
+  </form>
+</div>
+<button class="btn waves-effect waves-light block" type="submit" name="action">Submit</button>
+</div>
 {% endblock %}
