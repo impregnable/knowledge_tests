@@ -30,11 +30,15 @@
      *@ORM\Column(type="boolean")
      */
      protected $isCorrect;
-   
+
+     public function __toString() {
+       return $this->text;
+     }
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +61,7 @@
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -80,7 +84,7 @@
     /**
      * Get isCorrect
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsCorrect()
     {
@@ -103,7 +107,7 @@
     /**
      * Get question
      *
-     * @return \AppBundle\Entity\Question 
+     * @return \AppBundle\Entity\Question
      */
     public function getQuestion()
     {

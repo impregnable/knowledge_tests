@@ -69,6 +69,48 @@ swiftmailer:
 
 easy_admin:
     entities:
-        - AppBundle\Entity\Test
-        - AppBundle\Entity\Question
-        - AppBundle\Entity\Answer
+      Tests:
+        label: 'Tests'
+        class: AppBundle\Entity\Test
+        list:
+          title: 'Tests'
+          actions:
+            - { name: 'edit', label: 'Edit' }
+            - { name: 'delete', label: 'Delete' }
+            - { name: 'new', label: 'New' }
+        edit:
+          title: 'Edit test'
+          actions:
+            - { name: 'save', label: 'Save' }
+            - { name: 'delete', label: 'Delete' }
+            - { name: 'list', label: 'List' }
+      Questions:
+        label: 'Questions'
+        class: AppBundle\Entity\Question
+        list:
+          title: 'Questions'
+          actions:
+            - { name: 'edit', label: 'Edit' }
+            - { name: 'delete', label: 'Delete' }
+            - { name: 'new', label: 'New' }
+        edit:
+          title: 'Edit question'
+          actions:
+            - { name: 'save', label: 'Save' }
+            - { name: 'delete', label: 'Delete' }
+            - { name: 'list', label: 'List' }
+      Answers:
+        label: 'Answers'
+        class: AppBundle\Entity\Answer
+        list:
+          title: 'Answers'
+          actions:
+            - { name: 'edit', label: 'Edit' }
+            - { name: 'delete', label: 'Delete' }
+            - { name: 'new', label: 'New' }
+        edit:
+          title: 'Edit answer'
+          actions:
+            - { name: 'save', label: 'Save' }
+            - { name: 'delete', label: 'Delete' }
+            - { name: 'list', label: 'List' }

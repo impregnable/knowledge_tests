@@ -24,6 +24,10 @@
     /** @ORM\OneToMany(targetEntity="Question", mappedBy="test") */
     protected $questions;
 
+    public function __toString() {
+      return $this->name;
+    }
+
     /**
     * Set id
     *
@@ -99,7 +103,7 @@
     /**
      * Get questions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getQuestions()
     {

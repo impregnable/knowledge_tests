@@ -29,6 +29,10 @@
      /** @ORM\OneToMany(targetEntity="Answer", mappedBy="question") */
      protected $answers;
 
+     public function __toString() {
+       return $this->text;
+     }
+
      public function getType() {
        $qs = $this->getAnswers();
        if($qs->count() == 1) {
