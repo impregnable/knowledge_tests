@@ -29,14 +29,12 @@
     * @Route("/tests/{id}", name="test")
     */
     function getCurrentTest($id) {
+      // fetches Doctrine's entity manager object
       $em = $this->getDoctrine()->getManager();
+      // fetching a specific test based on its id value
       $test = $em->find('AppBundle\Entity\Test', $id);
       return $this->render('test.html.twig', array(
         'test' => $test
       ));
-      // $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
-      // $query = $qb->select(array('t.name', 'q.text', 'a.text'))
-      // ->from('AppBundle\Entity\Question', 'q')
-      // ->join('AppBundle\Entity\Answer', 'a', \Doctrine\ORM\Query\Expr\Join::ON,  )
     }
   }
