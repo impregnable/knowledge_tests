@@ -7,6 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Test;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Answer;
+use AppBundle\Entity\User;
 
 class LoadTests implements FixtureInterface
 {
@@ -61,5 +62,9 @@ class LoadTests implements FixtureInterface
         }
       }
     }
+
+    $user = (new User())->setUsername('12345678')->setPassword('12345678')->setEmail('12345678');
+    $manager->persist($user);
+    $manager->flush();
   }
 }
